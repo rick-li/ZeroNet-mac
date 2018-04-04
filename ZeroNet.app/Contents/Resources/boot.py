@@ -137,11 +137,11 @@ def signalHandler(signal, frame):
     raise ExitCommand()
 
 
-
+import os
 def main(mode="main", open_browser=True):
     if open_browser:
         sys.argv = [sys.argv[0]] + ["--open_browser", "default_browser"] + sys.argv[1:]  # Open browser window
-
+    sys.argv = sys.argv + ["--config_file", os.getcwd() + "/zeronet.conf"] 
     if mode == "thread":
         # Manipulate sys.exit to send exit signal before killing the thread
         sys_exit = sys.exit
